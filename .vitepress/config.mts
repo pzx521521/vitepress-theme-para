@@ -4,7 +4,7 @@ import { getPosts } from './theme/js/postdata'
 const pageSize = 10
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "My Awesome Project",
+  title: "Para's",
   
   description: "A VitePress Site",
   themeConfig: {

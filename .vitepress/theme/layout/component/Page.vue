@@ -46,7 +46,7 @@ defineProps({
 <style scoped>
 .post-info {
     font-size: 12px;
-    color: var(--vp-c-gray-2); /* 使用较暗的灰色文本 */
+    color: var(--vp-c-text-1); /* 使用较暗的灰色文本 */
 }
 
 .post-info span {
@@ -98,7 +98,7 @@ defineProps({
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
-    color: var(--vp-c-gray-1); /* 使用较深的灰色 */
+    color: var(--vp-c-text-1); /* 使用较深的灰色 */
     margin: 10px 0;
     line-height: 1.6rem;
 }

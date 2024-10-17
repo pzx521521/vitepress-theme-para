@@ -11,5 +11,5 @@ mr-1{
 }
 
 .Layout {
-    min-height: calc(100vh - 78px) !important; /* reduce copyright */
+    min-height: calc(100vh - 40px) !important; /* reduce copyright */
 }
