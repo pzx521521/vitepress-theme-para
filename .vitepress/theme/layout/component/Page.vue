@@ -10,16 +10,6 @@
             {{ article.frontMatter.date }} <span v-for="item in article.frontMatter.tags"><a :href="withBase(`/pages/tags.html?tag=${item}`)"> {{ item }}</a></span>
         </div>
     </div>
-
-    <div class="pagination">
-        <a
-            class="link"
-            :class="{ active: pageCurrent === i }"
-            v-for="i in pagesNum"
-            :key="i"
-            :href="withBase(i === 1 ? '/index.html' : `/page_${i}.html`)"
-        >{{ i }}</a>
-    </div>
 </template>
 
 <script lang="ts" setup>
@@ -101,12 +91,6 @@ defineProps({
     color: var(--vp-c-text-1); /* 使用较深的灰色 */
     margin: 10px 0;
     line-height: 1.6rem;
-}
-
-.pagination {
-    margin-top: 24px;
-    display: flex;
-    justify-content: center;
 }
 
 .link {

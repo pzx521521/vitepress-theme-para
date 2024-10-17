@@ -86,7 +86,7 @@ async function modifyFrontMatter(data: { [key: string]: any }, content:StringCon
             data.tags = tagPaths.filter(tag => tag); // 过滤掉空字符串作为标签
         } 
         if(!data.category && tagPaths.length > 0){
-            data.category = tagPaths[0]
+            data.category = tagPaths[tagPaths.length-1]
         }
     }
     if (!data.title) {

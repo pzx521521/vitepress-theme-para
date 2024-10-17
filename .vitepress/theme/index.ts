@@ -5,6 +5,7 @@ import Archives from './layout/ArchivesView.vue'
 import Category from './layout/CategoryView.vue'
 import Tags from './layout/TagsView.vue'
 import Pages from './layout/PagesView.vue'
+import HomeView from './layout/HomeView.vue'
 import './css/style.css'
 
 export default {
@@ -15,7 +16,8 @@ export default {
     app.component('Category', Category)
     app.component('Archives', Archives)
     app.component('Pages', Pages)
+    app.component('HomeView', HomeView)
 
-  }
+  },
 } satisfies Theme
 
