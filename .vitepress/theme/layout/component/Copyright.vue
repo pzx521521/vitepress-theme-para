@@ -18,9 +18,9 @@ const webTitle = site.value.title
     text-align: center;
     font-size: 0.75rem;
     width: 100%;
-    padding: 15px 0;
     overflow: auto;
 }
+
 .vitepress {
     color: var(--vp-c-text-1);
     font-weight: 700;

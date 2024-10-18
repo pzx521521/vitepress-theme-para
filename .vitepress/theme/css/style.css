@@ -2,14 +2,15 @@ html {
     font-family: Arial, Helvetica;
 }
 
-p-1{
+p-1 {
     padding: 0.25rem;
 }
 
-mr-1{
+mr-1 {
     margin-right: 4px;
 }
 
 .Layout {
-    min-height: calc(100vh - 40px) !important; /* reduce copyright */
+    /* reduce copyright */
+    min-height: calc(100vh - 24px) !important;
 }
