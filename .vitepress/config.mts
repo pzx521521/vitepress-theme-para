@@ -5,7 +5,7 @@ const pageSize = 10
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Para's",
-  
+  ignoreDeadLinks: true,
   description: "A VitePress Site",
   themeConfig: {
     pageSize: pageSize,
