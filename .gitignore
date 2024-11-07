@@ -4,3 +4,4 @@
 /node_modules
 /posts/全部
 /.vitepress/dist
+/.vitepress
