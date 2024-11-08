@@ -10,7 +10,7 @@ export default defineConfig({
   themeConfig: {
     pageSize: pageSize,
     posts: await getPosts(pageSize),
-    logo: "/v-logo.png",
+    logo: "/logo.svg",
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Pages', link: '/pages/' },
