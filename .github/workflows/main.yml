@@ -28,7 +28,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages  # 部署到 gh-pages 分支
-          folder: ./vitepress/dist    # 指定构建输出目录，Vue 项目通常是 dist
+          folder: ./.vitepress/dist    # 指定构建输出目录，Vue 项目通常是 dist
 
       # 配置 s3
       - name: Configure AWS credentials for Profile Tebi
