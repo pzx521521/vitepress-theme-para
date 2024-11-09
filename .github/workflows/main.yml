@@ -4,7 +4,7 @@ on:
   workflow_dispatch: 
   push:
     branches:
-      - main  # 触发条件，推送到 main 分支时
+      - master  # 触发条件，推送到 main 分支时
 
 jobs:
   build:
