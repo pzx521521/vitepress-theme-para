@@ -31,6 +31,7 @@ jobs:
           publish_branch: gh-pages  # 发布到 gh-pages 分支
           user_name: 'github-actions'  # 提交者名称
           user_email: 'github-actions@github.com'  # 提交者邮箱
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       # 配置 s3
       - name: Configure AWS credentials for Profile Tebi
