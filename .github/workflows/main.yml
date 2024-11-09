@@ -29,9 +29,7 @@ jobs:
         with:
           publish_dir: ./.vitepress/dist  # 构建目录
           publish_branch: gh-pages  # 发布到 gh-pages 分支
-          user_name: 'github-actions'  # 提交者名称
-          user_email: 'github-actions@github.com'  # 提交者邮箱
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.RAN_ACTIONS_TOKEN }}  # 自动生成的 GitHub Token
 
       # 配置 s3
       - name: Configure AWS credentials for Profile Tebi
