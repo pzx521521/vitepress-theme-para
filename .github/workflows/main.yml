@@ -10,25 +10,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v2
-#
-#      - name: Set up Node.js
-#        uses: actions/setup-node@v2
-#
-#      - name: Install dependencies
-#        run: npm install  # 安装依赖
-#
-#      - name: Build VitePress
-#        run: npm run build  # 执行构建命令，确保 package.json 中定义了 build 脚本
-#
-#      # 4. 部署到 GitHub Pages
-#      - name: Deploy to GitHub Pages
-#        uses: peaceiris/actions-gh-pages@v3
-#        with:
-#          publish_dir: ./.vitepress/dist  # 构建目录
-#          publish_branch: gh-pages  # 发布到 gh-pages 分支
-#          github_token: ${{ secrets.RAN_ACTIONS_TOKEN }}  # 自动生成的 GitHub Token
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+
+      - name: Install dependencies
+        run: npm install  # 安装依赖
+
+      - name: Build VitePress
+        run: npm run build  # 执行构建命令，确保 package.json 中定义了 build 脚本
+
+      # 4. 部署到 GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./.vitepress/dist  # 构建目录
+          publish_branch: gh-pages  # 发布到 gh-pages 分支
+          github_token: ${{ secrets.RAN_ACTIONS_TOKEN }}  # 自动生成的 GitHub Token
       # 4. 同步到 Tebi 的 S3 存储桶
       - name: Sync to Tebi S3 Bucket
         env:
@@ -36,5 +36,5 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.TEBI_SECRET_ACCESS_KEY }}  # 使用 GitHub Secrets
           AWS_REGION: auto
         run:
-          aws --endpoint-url https://s3.tebi.io s3 ls --debug
-#          aws s3 sync .vitepress/dist s3://parap.us.kg --endpoint-url https://s3.tebi.io
+          aws --endpoint-url https://s3.tebi.io s3 ls
+          aws s3 sync .vitepress/dist s3://param.us.kg --endpoint-url https://s3.tebi.io
