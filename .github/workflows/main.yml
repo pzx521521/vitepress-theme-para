@@ -16,8 +16,6 @@ jobs:
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
-        with:
-          node-version: '16'  # 使用你项目所需的 Node.js 版本
 
       - name: Install dependencies
         run: npm install  # 安装依赖
@@ -25,9 +23,22 @@ jobs:
       - name: Build VitePress
         run: npm run build  # 执行构建命令，确保 package.json 中定义了 build 脚本
 
+      # 4. 部署到 GitHub Pages
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.RAN_ACTIONS_TOKEN }}  # 自动生成的 GitHub Token
-          publish_dir: .vitepress/dist  # VitePress 构建输出的目录（默认为 ./dist）
-          publish_branch: gh-pages  # 要发布的目标分支
+          branch: gh-pages  # 部署到 gh-pages 分支
+          folder: ./vitepress/dist    # 指定构建输出目录，Vue 项目通常是 dist
+
+      # 配置 s3
+      - name: Configure AWS credentials for Profile Tebi
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.TEBI_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.TEBI_SECRET_ACCESS_KEY }}
+          aws-region: 'auto'
+
+      # 4. 同步到 Tebi 的 S3 存储桶
+      - name: Sync to Tebi S3 Bucket
+        run: |
+          aws s3 sync ./.vitepress/dist s3://param.us.kg --endpoint-url https://s3.tebi.io --profile tebi
