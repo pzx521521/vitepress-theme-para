@@ -25,4 +25,7 @@ export default defineConfig({
       provider: 'local'
     }
   },
+  head: [
+    ['link', { rel: 'icon', href: '/logo.svg' }]  // 配置图标路径
+  ]
 })
