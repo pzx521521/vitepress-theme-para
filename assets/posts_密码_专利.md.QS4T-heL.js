@@ -1,0 +1,65 @@
+import{_ as a,c as i,a2 as n,o as p}from"./chunks/framework.DDqBDuc9.js";const r=JSON.parse('{"title":"自动匹配单价引用","description":"","frontmatter":{},"headers":[],"relativePath":"posts/密码/专利.md","filePath":"posts/密码/专利.md"}'),l={name:"posts/密码/专利.md"};function t(e,s,h,E,k,o){return p(),i("div",null,s[0]||(s[0]=[n(`<h1 id="自动匹配单价引用" tabindex="-1">自动匹配单价引用 <a class="header-anchor" href="#自动匹配单价引用" aria-label="Permalink to &quot;自动匹配单价引用&quot;">​</a></h1><p><strong>技术领域</strong></p><p>人工智能和工程造价的(自动匹配单价引用)组合应用</p><p><strong>背景技术</strong></p><ul><li>数据的清洗整理和Onehot处理</li><li>LogisticRegression(逻辑回归)</li></ul><p><strong>发明内容</strong></p><p>用户户在导入工程之后,需手动对清单定额进行单价引用以达到多条清单同步价格的目的,该技术可以部分代替用户输入,自动对多条清单的同步单价关系自动关联</p><p><strong>附图</strong></p><p><strong>具体实施方式</strong></p><h5 id="综述" tabindex="-1">综述 <a class="header-anchor" href="#综述" aria-label="Permalink to &quot;综述&quot;">​</a></h5><p>首先通过对清单的内容进行过滤清洗和分词,对清单中的名称规格等进行one-hot编码及向量化,建立逻辑回归模型,输入不同清单的向量,和实际清单之间的引用关系, 预测输入清单和现有清单之间的引用关系.</p><h5 id="数据清洗和处理" tabindex="-1">数据清洗和处理 <a class="header-anchor" href="#数据清洗和处理" aria-label="Permalink to &quot;数据清洗和处理&quot;">​</a></h5><p>通过已有的工程监理数据库, 该数据库包含清单单价引用的信息和清单对应的信息.</p><ul><li>针对清单名称:</li></ul><p>首先对库中所有句子进行分词(并检查), 然后对词语进行 one-hot编码.对于输入的清单名称同样先分词, 然后通过one-hot编码把词语变为一个限制为20个长度的向量,</p><ul><li>针对清单的项目特征/单位:</li></ul><p>统计后归纳为几百个特征, 并对数据进行清理, 分为N个大类, 每个大类下有不同的小类, 分别对他们做one-hot编码, 并合并为一个二维向量</p><ul><li>单位同样做为有一维向量</li><li>合并为一个(20, 2, 1) 对应的内容为(名称, 项目分类, 单位)的向量</li></ul><h5 id="模型的生成和训练" tabindex="-1">模型的生成和训练 <a class="header-anchor" href="#模型的生成和训练" aria-label="Permalink to &quot;模型的生成和训练&quot;">​</a></h5><p>生成一个LogisticRegression(逻辑回归模型)</p><p>组合清单名称的向量和清单项目特征的向量为(20, 2, 1) 的向量作为训练输入</p><p>设置第一条清单的向量为训练输入一,设置第二条清单的向量为训练输入二</p><p>输入两条清单的引用关系作为训练输出.</p><p>训练该模型.</p><h5 id="预测与应用" tabindex="-1">预测与应用 <a class="header-anchor" href="#预测与应用" aria-label="Permalink to &quot;预测与应用&quot;">​</a></h5><p>输入预测清单和现有清单, 预测他们之间是否存在引用关系</p><p>数据清洗</p><div class="language-mermaid vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">mermaid</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">graph TD</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a[库中所有清单名称进行分词]--&gt;b[one-hot编码]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">c[对库中所有清单项目特征进行分类分为2个维度:大类和小类]--&gt;d[one-hot编码]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">e[对库中所有清单单位进行列举]--&gt;f[one-hot编码]</span></span></code></pre></div><p>模型训练</p><div class="language-mermaid vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">mermaid</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">graph TD</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a[已知清单一]--&gt;b[对清单名称使用one-hot生成一个20长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a[已知清单一]--&gt;c[对清单项目特征使用one-hot生成一个2长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a[已知清单一]--&gt;d[对清单单位使用one-hot生成一个1长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">c--&gt;e[组合为一个20, 2, 1的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">d--&gt;e</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">b--&gt;e</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a2[已知清单二]--&gt;b2[对清单名称使用one-hot生成一个20长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a2[已知清单二]--&gt;c2[对清单项目特征使用one-hot生成一个2长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a2[已知清单二]--&gt;d2[对清单单位使用one-hot生成一个1长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">c2--&gt;e2[组合为一个20, 2, 1的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">d2--&gt;e2</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">b2--&gt;e2</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">e--&gt;g</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">f[已知是否存在引用关系]--&gt;g</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">e2--&gt;g[输入LogisticRegression逻辑回归模型]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">g--&gt;h[输出训练模型]</span></span></code></pre></div><p>模型应用</p><div class="language-mermaid vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">mermaid</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">graph TD</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a[已知清单一]--&gt;b[对清单名称使用one-hot生成一个20长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a[已知清单一]--&gt;c[对清单项目特征使用one-hot生成一个2长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a[已知清单一]--&gt;d[对清单单位使用one-hot生成一个1长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">c--&gt;e[组合为一个20, 2, 1的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">d--&gt;e</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">b--&gt;e</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a2[已知清单二]--&gt;b2[对清单名称使用one-hot生成一个20长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a2[已知清单二]--&gt;c2[对清单项目特征使用one-hot生成一个2长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a2[已知清单二]--&gt;d2[对清单单位使用one-hot生成一个1长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">c2--&gt;e2[组合为一个20, 2, 1的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">d2--&gt;e2</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">b2--&gt;e2</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">e--&gt;g</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">e2--&gt;g[输入LogisticRegression逻辑回归模型]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">g--&gt;h[输出是否存在引用关系]</span></span></code></pre></div><h1 id="自动推荐配合比" tabindex="-1">自动推荐配合比 <a class="header-anchor" href="#自动推荐配合比" aria-label="Permalink to &quot;自动推荐配合比&quot;">​</a></h1><p><strong>技术领域</strong></p><p>人工智能和工程造价功能(自动推荐配合比)之间的组合应用</p><p><strong>背景技术</strong></p><ul><li><p>数据的清洗整理和Onehot处理</p></li><li><p>DNN</p></li></ul><p><strong>发明内容</strong></p><p>用户在已有清单中套定额时,当定额下存在配合比时,需手动选择对应的配合比.通过该方法可以自动帮助客户选择相对正确的配合比</p><p><strong>附图</strong></p><p><strong>具体实施方式</strong></p><p>综述</p><p>由于套定额时配合比的选择工程量清单的内容有关.通过录入或导入好的清单数据,对清单的内容进行智能分词并自动提取匹配配置库中的关键字,首先使用用户习惯进行第一轮分析推荐，当分析出多选项时，再结合大数据库使用分布概率分析出使用概率最大的选项，推荐最大概率使用的配合比。</p><h5 id="数据清洗和处理-1" tabindex="-1">数据清洗和处理 <a class="header-anchor" href="#数据清洗和处理-1" aria-label="Permalink to &quot;数据清洗和处理&quot;">​</a></h5><p>通过已有的工程监理数据库, 该数据库包含清单单价引用的信息和清单对应的信息.</p><ul><li>针对清单名称:</li></ul><p>首先对库中所有句子进行分词(并检查), 然后对词语进行 one-hot编码.对于输入的定额名称同样先分词, 然后通过one-hot编码把词语变为一个限制为20个长度的向量,</p><ul><li>针对清单的项目特征/定额单位:</li></ul><p>统计后归纳为几百个特征, 并对数据进行清理, 分为N个大类, 每个大类下有不同的小类, 分别对他们做one-hot编码, 并合并为一个二维向量</p><ul><li>定额单位同样做为有一维向量</li><li>合并为一个(20, 2, 1, 1) 的向量对应的内容为(定额名称, 清单项目分类, 定额单位, 清单单位)</li><li>针对配合比, 列出所有的配合比的大类和小类,如纯混凝土和泵用纯混凝土是两个大类, &quot;泵用纯混凝土C15 42.5 &quot; 和 &quot;泵用纯混凝土C20 42.5 2&quot;是两个小类, 用是对库中的所有配合比做数据清洗和onehot化为一个二维向量(配合比大类, 配合比小类)</li></ul><h5 id="模型的生成和训练-1" tabindex="-1">模型的生成和训练 <a class="header-anchor" href="#模型的生成和训练-1" aria-label="Permalink to &quot;模型的生成和训练&quot;">​</a></h5><p>生成一个DNN模型,设置32个隐藏层.</p><p>组合定额名称的向量和清单项目特征的向量为(20, 2, 1, 1) 的向量作为训练输入</p><p>输入对应定额选择的配合比(配合比大类, 配合比小类)为训练输出.</p><p>训练该模型.</p><h5 id="预测与应用-1" tabindex="-1">预测与应用 <a class="header-anchor" href="#预测与应用-1" aria-label="Permalink to &quot;预测与应用&quot;">​</a></h5><p>输入预测定额及他所属的清单, 预测其配合比是属于哪一大类和哪一小类.</p><p>数据清洗</p><div class="language-mermaid vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">mermaid</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">graph TD</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a[库中所有定额名称进行分词]--&gt;b[one-hot编码]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">c[对库中所有清单项目特征进行分类分为2个维度:大类和小类]--&gt;d[one-hot编码]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">e[对库中所有清单单位进行列举]--&gt;f[one-hot编码]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">e2[对库中所有定额单位进行列举]--&gt;f2[one-hot编码]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">g[对库中所有配合比进行分大小类]--&gt;h[one-hot编码]</span></span></code></pre></div><p>模型训练</p><div class="language-mermaid vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">mermaid</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">graph TD</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a[已知定额名称]--&gt;b[对定额名称使用one-hot生成一个20长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a[已知定额所对应清单项目特征]--&gt;c[对清单项目特征使用one-hot生成一个2长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a[已知定额单位]--&gt;d[对定额单位使用one-hot生成一个1长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a[已知定额所对应清单单位]--&gt;d[对清单单位使用one-hot生成一个1长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">c--&gt;e[组合为一个20, 2, 1, 1的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">d--&gt;e</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">b--&gt;e</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">f[对实际工程中的配合比使用one-hot生成一个2长度的向量]--&gt;g</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">e--&gt;g[输入DNN 深度学习模型]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">g--&gt;h[输出训练模型]</span></span></code></pre></div><p>模型应用</p><div class="language-mermaid vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">mermaid</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">graph TD</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a[已知定额名称]--&gt;b[对定额名称使用one-hot生成一个20长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a[已知定额所对应清单项目特征]--&gt;c[对清单项目特征使用one-hot生成一个2长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a[已知定额单位]--&gt;d[对定额单位使用one-hot生成一个1长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">a[已知定额所对应清单单位]--&gt;d[对清单单位使用one-hot生成一个1长度的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">c--&gt;e[组合为一个20, 2, 1, 1的向量]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">d--&gt;e</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">b--&gt;e</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">e--&gt;g[输入DNN 深度学习模型]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">g--&gt;h[输出对应的配合比]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">h--&gt;对结果进行softmax处理,防止越界</span></span></code></pre></div>`,63)]))}const d=a(l,[["render",t]]);export{r as __pageData,d as default};
