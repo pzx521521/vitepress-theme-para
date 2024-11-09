@@ -25,10 +25,12 @@ jobs:
 
       # 4. 部署到 GitHub Pages
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          branch: gh-pages  # 部署到 gh-pages 分支
-          folder: ./.vitepress/dist    # 指定构建输出目录，Vue 项目通常是 dist
+          publish_dir: ./.vitepress/dist  # 构建目录
+          publish_branch: gh-pages  # 发布到 gh-pages 分支
+          user_name: 'github-actions'  # 提交者名称
+          user_email: 'github-actions@github.com'  # 提交者邮箱
 
       # 配置 s3
       - name: Configure AWS credentials for Profile Tebi
