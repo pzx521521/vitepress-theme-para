@@ -41,5 +41,6 @@ jobs:
         run: |
           aws configure set default.s3.signature_version s3v4
           aws configure set aws_access_key_id $R2_ACCESS_KEY_ID
-          aws configure set aws_secret_access_key $R2_SECRET_ACCESS_KEY 
+          aws configure set aws_secret_access_key $R2_SECRET_ACCESS_KEY
+          echo "set config success"
           aws s3 sync .vitepress/dist s3://param.us.kg --endpoint-url https://s3.tebi.io --debug
