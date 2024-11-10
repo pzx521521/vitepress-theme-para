@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node
 
       - name: Install dependencies
         run: npm install  # 安装依赖
@@ -24,7 +24,7 @@ jobs:
 
       # 4. 部署到 GitHub Pages
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages
         with:
           publish_dir: ./.vitepress/dist  # 构建目录
           publish_branch: gh-pages  # 发布到 gh-pages 分支
