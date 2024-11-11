@@ -9,8 +9,8 @@ s3list:
 	aws --endpoint-url https://s3.tebi.io --profile tebi s3 ls
 
 s3sync:
-	aws --endpoint-url https://s3.tebi.io --profile tebi s3 sync .vitepress/dist s3://parap.us.kg
+	aws --endpoint-url https://s3.tebi.io --profile tebi s3 sync .vitepress/dist s3://parb.us.kg
 s3mv:
-	aws s3 rm s3://parap.us.kg --recursive --endpoint-url https://s3.tebi.io --profile tebi
+	aws s3 rm s3://param.us.kg --recursive --endpoint-url https://s3.tebi.io --profile tebi
 
 

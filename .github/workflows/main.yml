@@ -36,4 +36,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.TEBI_SECRET_ACCESS_KEY }}  # 使用 GitHub Secrets
           AWS_REGION: auto
         run: |
-          aws s3 sync .vitepress/dist s3://param.us.kg --endpoint-url https://s3.tebi.io
+          aws s3 sync .vitepress/dist s3://parb.us.kg --endpoint-url https://s3.tebi.io
