@@ -2,7 +2,7 @@
     <main class="main">
         <div class="profile">
             <div class="profile_inner">
-                <img draggable="false" crossorigin="anonymous" src="https://gd-hbimg.huaban.com/499917835cccded2471b13753fcc58d63b793c3a2c9ad-p2Im8q_fw480g" alt="profile image" title="" height="150" width="150">
+                <img draggable="false" referrerpolicy="no-referrer" crossorigin="anonymous" src="https://gd-hbimg.huaban.com/499917835cccded2471b13753fcc58d63b793c3a2c9ad-p2Im8q_fw480g" alt="profile image" title="" height="150" width="150">
                 <h1></h1>
                 <span></span>
                 <div class="social-icons">
